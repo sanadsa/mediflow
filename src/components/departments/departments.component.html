@@ -1,0 +1,29 @@
+<div class="departments-container">
+  @if (loading()) {
+    <div class="loading">Loading...</div>
+  } @else {
+    <cdk-virtual-scroll-viewport itemSize="280" class="virtual-scroll-viewport">
+      <div class="departments-grid" cdkDropListGroup>
+        @for (dept of (filteredDepartments || departments()); track dept.name) {
+          <div class="department-card" cdkDropList [cdkDropListData]="dept.patients" (cdkDropListDropped)="drop($event)">
+            <div class="department-header">
+              {{ dept.name }}
+              <button mat-raised-button color="primary" (click)="showStatistics(dept)">Statistics</button>
+            </div>
+            <div class="patient-list">
+              @if (dept.patients.length === 0) {
+                <div class="empty">No patients</div>
+              } @else {
+                @for (p of dept.patients; track p.id) {
+                  <div class="patient-item" cdkDrag>
+                    <app-patient-card [patient]="p" (updated)="onPatientUpdated($event)"></app-patient-card>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </cdk-virtual-scroll-viewport>
+  }
+</div>

@@ -1,0 +1,48 @@
+<h1 class="title">Mediflow Patient Management</h1>
+<div class="layout">
+  <div class="header-actions">
+    <button mat-raised-button color="primary" (click)="openNewPatientDialog()">
+      <mat-icon>add</mat-icon>
+      New Patient
+    </button>
+    <div class="stats">
+      Total Patients: {{ totalPatients() }}
+    </div>
+  </div>
+
+  <div class="search-section">
+    <mat-form-field appearance="fill" class="search-field">
+      <mat-label>Search patients...</mat-label>
+      <input matInput [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)"
+        placeholder="Search by name, MRN, department, or doctor">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <div class="search-filters">
+      <mat-form-field appearance="fill" class="filter-field">
+        <mat-label>Department</mat-label>
+        <mat-select [ngModel]="selectedDepartment()" (ngModelChange)="selectedDepartment.set($event)">
+          <mat-option value="">All Departments</mat-option>
+          @for (dept of departmentState.departments(); track dept.name) {
+          <mat-option [value]="dept.name">{{ dept.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="filter-field">
+        <mat-label>Priority</mat-label>
+        <mat-select [ngModel]="selectedPriority()" (ngModelChange)="selectedPriority.set($event)">
+          <mat-option value="">All Priorities</mat-option>
+          <mat-option value="Critical" class="priority-critical-option">Critical</mat-option>
+          <mat-option value="Urgent" class="priority-urgent-option">Urgent</mat-option>
+          <mat-option value="Standard" class="priority-standard-option">Standard</mat-option>
+          <mat-option value="Routine" class="priority-routine-option">Routine</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- <mat-divider></mat-divider> -->
+  <app-departments [filteredDepartments]="filteredDepartments()"></app-departments>
+  <mat-divider></mat-divider>
+</div>

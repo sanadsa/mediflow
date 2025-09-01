@@ -1,0 +1,45 @@
+<div class="statistics-panel">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ data.name }} - Statistics</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-label">Total Patients</div>
+          <div class="stat-value">{{ data.patients.length }}</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Department Capacity</div>
+          <div class="stat-value">{{ departmentCapacity }}</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Available Capacity</div>
+          <div class="stat-value" [ngClass]="{'low-capacity': availableCapacity <= 5}">{{ availableCapacity }}</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Average Wait Time</div>
+          <div class="stat-value">{{ averageWaitTime }} min</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Critical Patients</div>
+          <div class="stat-value critical">{{ criticalPatients }}</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Urgent Patients</div>
+          <div class="stat-value urgent">{{ urgentPatients }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="close()">Close</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

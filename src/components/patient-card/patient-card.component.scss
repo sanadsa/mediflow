@@ -1,0 +1,97 @@
+.patient-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  cursor: move;
+}
+
+mat-card-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.flags {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.status-flag, .priority-flag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Status Colors */
+.status-admission {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.status-in-treatment {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  border: 1px solid #e1bee7;
+}
+
+.status-waiting {
+  background-color: #fff3e0;
+  color: #f57c00;
+  border: 1px solid #ffcc02;
+}
+
+.status-discharged {
+  background-color: #e8f5e8;
+  color: #388e3c;
+  border: 1px solid #c8e6c9;
+}
+
+.status-critical {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
+  animation: pulse 2s infinite;
+}
+
+/* Priority Colors */
+.priority-critical {
+  background-color: #d32f2f;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.priority-urgent {
+  background-color: #ff9800;
+  color: white;
+}
+
+.priority-standard {
+  background-color: #2196f3;
+  color: white;
+}
+
+.priority-routine {
+  background-color: #4caf50;
+  color: white;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.label {
+  font-weight: 600;
+  min-width: 70px;
+  color: #666;
+}
+
+.value {
+  color: #333;
+}

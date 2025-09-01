@@ -1,0 +1,74 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{patient()?.name}}</mat-card-title>
+      <mat-card-subtitle>{{patient()?.mrn}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="patientForm" class="patient-form">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="statusTrack">
+            @for (status of statusOptions; track status) {
+              <mat-option [value]="status">{{status}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Department</mat-label>
+          <mat-select formControlName="department">
+            @for (dept of departmentOptions; track dept) {
+              <mat-option [value]="dept">{{dept}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority">
+            @for (priority of priorityOptions; track priority) {
+              <mat-option [value]="priority" [ngClass]="'priority-' + priority.toLowerCase() + '-option'">{{priority}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Doctor</mat-label>
+          <input matInput formControlName="doctorName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Nurse</mat-label>
+          <input matInput formControlName="nurseName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Bed</mat-label>
+          <input matInput formControlName="bedNumber">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="left-actions">
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+      </div>
+      <div class="right-actions">
+        <button mat-button mat-dialog-close (click)="deletePatient()">Delete</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+  @if (error()) {
+    <mat-card appearance="outlined" class="error-card">
+      <mat-card-content>
+        <h4>Please fix the following errors:</h4>
+        <ul>
+          @for (field of getInvalidFields(); track field.name) {
+            <li>{{ field.displayName }} is required</li>
+          }
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

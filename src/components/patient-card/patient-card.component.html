@@ -1,0 +1,27 @@
+<div class="patient-item">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{ patient.mrn }} - {{ patient.name }}
+        <div class="flags">
+          <span class="status-flag" [ngClass]="'status-' + patient.statusTrack.toLowerCase().replace(' ', '-')">
+            {{ patient.statusTrack }}
+          </span>
+          <span class="priority-flag" [ngClass]="'priority-' + patient.priority.toLowerCase()">
+            {{ patient.priority }}
+          </span>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row"><span class="label">Doctor:</span> <span class="value">{{ patient.doctorName }}</span></div>
+      <div class="row"><span class="label">Nurse:</span> <span class="value">{{ patient.nurseName }}</span></div>
+      <div class="row"><span class="label">Admitted:</span> <span class="value">{{ patient.admissionDate | date:'medium' }}</span></div>
+      <div class="row"><span class="label">Bed:</span> <span class="value">{{ patient.bedNumber }}</span></div>
+      <div class="row"><span class="label">Waiting:</span> <span class="value">{{ patient.waitingTime }} min</span></div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="openPatientDetailsDialog()">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
